@@ -1,6 +1,13 @@
 #include "print_menu.h"
+#include <sqlite3.h>
 
 using namespace std;
+
+
+Menu::Menu(const char* db_name, sqlite3* db)
+:DataBase(db_name, db)
+{
+}
 
 void Menu::Print_Menu() const
 {
@@ -15,9 +22,13 @@ void Menu::Print_Menu() const
 
 void Menu::Switch_Case()
 {
+ Menu::Create_DB();
+ 
  while(1) {
    int choice;
+   cout<<"번호 선택:";
    cin >> choice;
+
 
    switch(choice)
    {

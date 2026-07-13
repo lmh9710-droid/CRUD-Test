@@ -1,14 +1,16 @@
 #include <iostream>
 #include "sqlite_test.h"
+#include "print_menu.h"
+#define DBNAME ("vendor.db")
 
 int main()
 { sqlite3* db= nullptr;
-  DataBase* database= new DataBase("vendor.db", db);
-
-  // database->Create_DB();
-  // database->Insert_DB();
-  database->Select_DB();
-  delete database;
+  Menu* menu = new Menu(DBNAME, db);
+  
+  menu->Print_Menu();
+  menu->Switch_Case();
+ 
+  delete menu;
   return 0;
 
 }

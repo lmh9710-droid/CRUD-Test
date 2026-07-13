@@ -35,6 +35,7 @@ void DataBase::Create_DB()
    if(result != SQLITE_OK)
    {
      std::cout<<"테이블 생성 실패"<<std::endl;
+     return;
    }
 }
 
@@ -55,24 +56,52 @@ void DataBase::Insert_DB()
  
    std::string query = 
    Format()
-   <<"insert into person values("<<vendor.id<<",'"<<vendor.company<<"','"<<vendor.manager<<"','"<<vendor.phone<<"');";
+   <<"insert into person(vendor, staff_name, Phone_number) values('"
+   <<vendor.company<<"','"<<vendor.manager<<"','"<<vendor.phone<<"');";
    // std::cout << query << std::endl;
    //==================================================
       
-   if(sqlite3_exec(this->mdb, query.c_str(), NULL, NULL, &err_msg) != SQLITE_OK)
+   if(sqlite3_exec(this->mdb, query.c_str(), nullptr, nullptr, &err_msg) != SQLITE_OK)
    {
-            printf("데이터 삽입 실패: %s\n", err_msg);
+           std::cout << 
+           "데이터 삽입 실패"<< 
+            err_msg << std::endl;
+           
             sqlite3_free(err_msg);
    }
    
    else {
-            printf("데이터 삽입 완료\n");
+            std::cout << "데이터 삽입 완료" << std::endl;
    }
 
 }
 
 void DataBase::Delete_DB()
 {
+   char* err_msg = nullptr; 
+   int delete_id;// 삭제할 ID번호 입력받을 변수
+
+   std::cout << "삭제할 ID를 입력하세요: " << std::endl; 
+   std::cin >> delete_id;
+
+   std::string query =
+   Format()
+   << "delete from person where id ="<<delete_id<<";";
+
+  if(sqlite3_exec(this->mdb, query.c_str(), nullptr, nullptr, &err_msg) != SQLITE_OK)
+  {
+      std::cout << 
+           "데이터 삽입 실패"<< 
+            err_msg << std::endl;
+           
+            sqlite3_free(err_msg);
+  }
+
+   else {
+      std::cout << "데이터 삽입 완료" << std::endl;
+   }
+
+
 
 }
 
@@ -111,6 +140,45 @@ void DataBase::Select_DB()
 
 void DataBase::Update_DB()
 {
+   char* err_msg = nullptr; 
+   Vendor vendor;
+   
+   std::cout << "수정할 ID를 입력하세요:\n"; 
+   std::cin >> vendor.id;
+
+   std::cout << "새로운 협력사명:\n";
+   std::cin >> vendor.company;
+
+   std::cout << "새로운 담당자명:\n";
+   std::cin >> vendor.manager;
+
+   std::cout << "새로운 전화번호:\n";
+   std::cin >> vendor.phone;
+
+   std::string query =
+   Format()
+   <<"UPDATE person SET vendor ="
+   <<vendor.company
+   <<", staff_name="
+   <<vendor.manager 
+   <<", phone_number="
+   <<vendor.phone
+   <<"WHERE id=" <<vendor.id<<";";
+
+   if(sqlite3_exec(this->mdb, query.c_str(), nullptr, nullptr, &err_msg) != SQLITE_OK)
+   {
+       std::cout << 
+      "데이터 업데이트 실패 실패"<< 
+       err_msg <<
+       std::endl;
+           
+      sqlite3_free(err_msg);
+   }
+
+   else {
+      std::cout << "데이터 삽입 완료" << std::endl;
+   }
+
    
 }
 
@@ -126,7 +194,7 @@ DataBase::~DataBase()
     }
 }
 
-std::string& get_DBNAME() const
+std::string DataBase::get_DBNAME() const
 {
-
+   return this->mdb_name;
 }

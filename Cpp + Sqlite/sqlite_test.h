@@ -14,10 +14,10 @@ class DataBase
      void Update_DB();
      void Delete_DB();
 
-     std::string& get_DBNAME() const;
+     std::string get_DBNAME() const;
     
      ~DataBase();
-    private:
+     private:
      std::string mdb_name; 
      sqlite3* mdb;
 

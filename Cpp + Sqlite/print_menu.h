@@ -5,12 +5,9 @@
 class Menu: public DataBase
 {
     public:
-    Menu() = default; 
+    Menu(const char* db_name, sqlite3* db) ;
     void Print_Menu() const;
     void Switch_Case();
-
     ~Menu();
-
-    private: 
 
 };
