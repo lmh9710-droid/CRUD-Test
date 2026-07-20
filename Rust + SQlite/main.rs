@@ -29,8 +29,7 @@ fn main() -> Result<()>{
   println!("\n---데이터 전체 조회(Read) ---");
   let users = read_all_users(&conn)?;
   
-  for user in users {
-    println!("{:?}", user);
+  for 
   }
 
   delete_user(&conn, 2)?;
@@ -61,7 +60,7 @@ fn read_all_users(conn: &Connection) -> Result<Vec<User>>{
     })
   })?;
 
-  let mut users = Vec::new();
+  let mut users = Vec::new(); //속이빈 벡터 메모리 할당
   for user in user_iter{
     users.push(user?);
   }
