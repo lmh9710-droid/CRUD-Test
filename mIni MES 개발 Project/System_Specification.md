@@ -9,7 +9,7 @@
 
 ## 2. 개발 목적 
 - MES 도입으로 공정관리 전산화 및 자동화
-- 자동화 달성으로 불필요한 Cost CI(Cost Inovation)
+- 자동화 달성으로 CI(Cost Inovation)
 
 ---
 
