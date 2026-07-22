@@ -7,7 +7,7 @@
 
 ## 2. 개발 목적 
 - MES 도입으로 공정관리 전산화 및 자동화
-- 자동화 달성으로 불필요한 Cost CI(cost Inovation)
+- 자동화 달성으로 불필요한 Cost CI(Cost Inovation)
 
 ## 3. 대상 사용자
 - 생산관리 실장 → 생산실적 관리
@@ -30,4 +30,19 @@
 - LQC(line quality control) 불량품 및 불량원인(카테고리화) 등록  
 - OQC(output quality control) 검사 판정 
 ### 5)출하관리
-- 
+- 출하 등록
+- 출하 이력 조회
+
+## 5. 개발환경
+### 1) 하드웨어/ 설비 
+- 기능: 실시간 데이터 수집 및 처리 엔진
+- 개발언어: C/C++, RUST
+### 2) Data Base 
+- 기능: Raw 데이터 저장 
+- 개발언어: SQL(SQLITE)
+### 3) 프론트 엔드 
+- 기능: 데이터 조회 및 등록
+- 개발언어: Python(streamlit)
+
+## 6. 개발일정
+- 살려주세요.
